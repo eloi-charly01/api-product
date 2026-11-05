@@ -3,12 +3,28 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Put;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Delete;
+use App\Enum\ProductStatus;
 use App\Repository\ProductRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
-#[ApiResource]
+#[ApiResource(
+    operations:[
+        new GetCollection(),
+        new Post(),
+        new Get(),
+        new Put(),
+        new Patch(),
+        new Delete()
+    ]
+)]
 class Product
 {
     #[ORM\Id]
@@ -25,8 +41,8 @@ class Product
     #[ORM\Column(length: 255)]
     private ?string $sku = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $status = null;
+    #[ORM\Column(length: 255, nullable: true, enumType: ProductStatus::class)]
+    private ?ProductStatus $status = null;
 
     public function getId(): ?int
     {
@@ -69,12 +85,12 @@ class Product
         return $this;
     }
 
-    public function getStatus(): ?string
+    public function getStatus(): ?ProductStatus
     {
         return $this->status;
     }
 
-    public function setStatus(?string $status): static
+    public function setStatus(?ProductStatus $status): static
     {
         $this->status = $status;
 
