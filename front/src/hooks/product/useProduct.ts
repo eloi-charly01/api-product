@@ -1,5 +1,5 @@
 import { productApi } from "@/src/api/productApi";
-import { Product } from "@/src/types/productType";
+import { CreateProductPayload, Product } from "@/src/types/productType";
 import { useEffect, useState } from "react";
 
 export const useProduct = () => {
@@ -18,5 +18,9 @@ export const useProduct = () => {
         return products;
     };
 
-    return { useGetProducts };
+    const createProduct = async (payload: CreateProductPayload): Promise<Product> => {
+        return productApi.createProduct(payload);
+    };
+
+    return { useGetProducts, createProduct };
 };
