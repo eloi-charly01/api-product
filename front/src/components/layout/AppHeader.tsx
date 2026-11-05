@@ -2,10 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { CreateButton } from "../ui/CreateButton";
 
 type AppHeaderProps = {
-  showCatalogLink?: boolean;
   onCreateClick?: () => void;
 };
 
@@ -15,8 +13,6 @@ const NAV_ITEMS = [
 ];
 
 export function AppHeader({
-  showCatalogLink = false,
-  onCreateClick,
 }: AppHeaderProps) {
   const pathname = usePathname();
 
@@ -59,18 +55,12 @@ export function AppHeader({
         </div>
 
         <div className="flex items-center gap-3">
-          {showCatalogLink && (
             <Link
               href="/product"
               className="inline-flex items-center gap-2 rounded-md border border-slate-300 bg-white px-3.5 py-2 text-sm font-medium text-slate-700 shadow-xs transition-colors hover:bg-slate-50"
             >
               Voir le catalogue
             </Link>
-          )}
-          <CreateButton
-            href={onCreateClick ? undefined : "/product"}
-            onClick={onCreateClick}
-          />
         </div>
       </div>
     </header>
