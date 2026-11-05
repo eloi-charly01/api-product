@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { CreateProductButton } from "@/src/components/ui/CreateButton";
+import { CreateButton } from "../ui/CreateButton";
 
 type AppHeaderProps = {
   showCatalogLink?: boolean;
@@ -67,7 +67,7 @@ export function AppHeader({
               Voir le catalogue
             </Link>
           )}
-          <CreateProductButton
+          <CreateButton
             href={onCreateClick ? undefined : "/product"}
             onClick={onCreateClick}
           />
