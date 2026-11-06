@@ -8,6 +8,7 @@ type ProductRowProps = {
   onEdit?: (product: Product) => void;
   onDelete?: (id: string) => void;
   actionHref?: string;
+  isShowButtons?: boolean;
 };
 
 export function ProductRow({
@@ -16,6 +17,7 @@ export function ProductRow({
   onEdit,
   onDelete,
   actionHref = "/product",
+  isShowButtons = true,
 }: ProductRowProps) {
   return (
     <div className="grid grid-cols-1 items-center gap-4 px-6 py-4 transition-colors hover:bg-slate-50/80 md:grid-cols-12">
@@ -40,7 +42,8 @@ export function ProductRow({
       </div>
 
       {/* Colonne Actions : Détail, Modifier, Supprimer */}
-      <div className="flex flex-wrap items-center justify-start gap-2 md:col-span-4 md:justify-end">
+      {isShowButtons && (
+        <div className="flex flex-wrap items-center justify-start gap-2 md:col-span-4 md:justify-end">
         <button
           type="button"
           onClick={() => onSelect(product)}
@@ -153,6 +156,7 @@ export function ProductRow({
           </Link>
         )}
       </div>
+      )}
     </div>
   );
 }

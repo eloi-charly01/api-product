@@ -140,7 +140,6 @@ export default function Home() {
                 <div className="col-span-2">SKU</div>
                 <div className="col-span-4">Produit & Description</div>
                 <div className="col-span-2">Statut</div>
-                <div className="col-span-4 text-right">Actions</div>
               </div>
               {productData.slice(0, 5).map((product) => (
                 <ProductRow
@@ -148,6 +147,7 @@ export default function Home() {
                   product={product}
                   onSelect={setSelectedProduct}
                   actionHref="/product"
+                  isShowButtons={false}
                 />
               ))}
             </div>

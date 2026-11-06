@@ -124,7 +124,7 @@ export default function Home() {
               </span>
             </div>
             <p className="mt-1 text-sm text-slate-600">
-              Consultez les références du catalogue et utilisez les actions Détail, Modifier ou Supprimer sur chaque ligne.
+              Consultez les références du catalogue 
             </p>
           </div>
 
