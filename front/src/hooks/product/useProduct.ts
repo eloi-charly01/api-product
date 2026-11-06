@@ -5,17 +5,22 @@ import { useEffect, useState } from "react";
 export const useProduct = () => {
     const useGetProducts = () => {
         const [products, setProducts] = useState<Product[]>([]);
+        const [isLoading, setIsLoading] = useState(true);
 
         useEffect(() => {
             const fetchProducts = async () => {
-                const productData = await productApi.getProducts();
-                setProducts(productData);
+                try {
+                    const productData = await productApi.getProducts();
+                    setProducts(productData);
+                } finally {
+                    setIsLoading(false);
+                }
             };
 
             fetchProducts();
         }, []);
 
-        return products;
+        return { products, isLoading };
     };
 
     const createProduct = async (payload: CreateProductPayload): Promise<Product> => {

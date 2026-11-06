@@ -32,7 +32,7 @@ export default function Home() {
 
   const { useGetProducts, createProduct } = useProduct();
 
-  const productData = useGetProducts();
+  const { products: productData, isLoading } = useGetProducts();
   if (productData.length && !products.length) {
     setProducts(productData);
   }
@@ -73,7 +73,7 @@ export default function Home() {
     }
   };
 
-  if (!productData.length && !products.length) {
+  if (isLoading) {
     return (
       <div className="min-h-screen bg-[#F4F6F9] text-slate-900">
         <AppHeader />
@@ -124,7 +124,7 @@ export default function Home() {
               </span>
             </div>
             <p className="mt-1 text-sm text-slate-600">
-              Consultez les références du catalogue et utilisez les actions Détail, Modifier ou Supprimer sur chaque ligne.
+              Consultez les références du catalogue 
             </p>
           </div>
 
