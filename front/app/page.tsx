@@ -12,7 +12,7 @@ import { CreateButton } from "@/src/components/ui/CreateButton";
 
 export default function Home() {
   const { useGetProducts } = useProduct();
-  const productData = useGetProducts();
+  const { products: productData } = useGetProducts();
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
   const totalProducts = productData.length;
